@@ -30,16 +30,18 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public void deleteById(long id) {
+        noteDAO.getById(id).orElseThrow(() -> new IllegalArgumentException("Note not found for id: " + id));
         noteDAO.deleteById(id);
     }
 
     @Override
     public void update(Note note) {
+        noteDAO.getById(note.getId()).orElseThrow(() -> new IllegalArgumentException("Note not found for id: " + note.getId()));
         noteDAO.update(note);
     }
 
     @Override
     public Note getById(long id) {
-        return noteDAO.getById(id).orElseThrow(() -> new IllegalArgumentException("Note not found"));
+        return noteDAO.getById(id).orElseThrow(() -> new IllegalArgumentException("Note not found for id: " + id));
     }
 }

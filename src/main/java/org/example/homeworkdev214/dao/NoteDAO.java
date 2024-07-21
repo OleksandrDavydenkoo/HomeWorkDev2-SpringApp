@@ -26,12 +26,10 @@ public class NoteDAO {
     }
 
     public void deleteById(long id) {
-        getById(id).orElseThrow(IllegalArgumentException::new);
         notes.remove(id);
     }
 
     public void update(Note note) {
-        getById(note.getId()).orElseThrow(IllegalArgumentException::new);
         notes.put(note.getId(), note);
     }
 
